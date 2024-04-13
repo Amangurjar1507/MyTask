@@ -5,7 +5,6 @@ import constant from '../../../services/config/constant';
 const useNewsFeed = () => {
   const [Show, setShow] = useState<boolean>(false);
   const [newsFeedData, setNewsFeedData] = useState([]);
-
   const onSwipNewsShow = useCallback(() => {
     setShow(true);
   }, [Show]);
