@@ -1,6 +1,7 @@
 import {useCallback, useState} from 'react';
 import useSWR from 'swr';
 import constant from '../../../services/config/constant';
+import { Log } from '../../../utility/log';
  
 const useNewsFeed = () => {
   const [Show, setShow] = useState<boolean>(false);
@@ -29,6 +30,7 @@ const { data, error } = useSWR(constant.baseURL, async (url: string) => {
     // Return the fetched data
     return responseData;
   } catch (error) {
+    Log("error",error)
      // rethrow the error to be caught by useSWR
     throw error;
   }
