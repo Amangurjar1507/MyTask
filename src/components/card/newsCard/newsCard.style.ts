@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
   cardContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: color.white,
+    backgroundColor: 'red',
     borderRadius: 5,
     paddingHorizontal:10,
     paddingVertical:10,

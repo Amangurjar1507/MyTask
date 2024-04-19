@@ -23,6 +23,16 @@ const NewsCard: FC<NewsCardProps> = ({item, index}) => {
           Description: {item?.description?.trim()}
         </Text>
       </View>
+      <SwipeButton
+            height={45}
+            width={330}
+            title="Swipe to See Next"
+            onSwipeSuccess={handleSwipeSuccess}
+            shouldResetAfterSuccess={true}
+            onReset={handleReset}
+            railFillBackgroundColor="green" // Set the initial color here
+            thumbIconBackgroundColor="yellow"
+          />
     </TouchableOpacity>
   );
 };
