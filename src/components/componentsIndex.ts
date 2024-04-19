@@ -1,5 +1,5 @@
-import SwipButton from './common/swipButton/SwipButton';
-import CustomStatusbar from './common/customStatusbar/CustomStatusbar';
+ import CustomStatusbar from './common/customStatusbar/CustomStatusbar';
 import Header from './common/header/Header';
+import SwipButtonCustom from './common/swipButtonCustom/SwipButtonCustom'
 
-export {SwipButton, CustomStatusbar, Header};
+export {SwipButtonCustom, CustomStatusbar, Header};

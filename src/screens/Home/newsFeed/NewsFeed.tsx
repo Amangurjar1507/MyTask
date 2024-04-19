@@ -1,38 +1,58 @@
-import React, {FC} from 'react';
-import {View, FlatList} from 'react-native';
-import styles from './newsFeed.style';
-import {CustomStatusbar, Header, SwipButton} from '../../../components/componentsIndex';
+import React, {useState} from 'react';
+import {SafeAreaView, View, Text, TouchableOpacity, Image} from 'react-native';
 import useNewsFeed from './useNewsFeed';
-import NewsCard from '../../../components/card/newsCard/NewsCard';
+import styles from './newsFeed.style';
+import {SwipButtonCustom} from '../../../components/componentsIndex';
 
-const NewsFeed: FC = () => {
-  const {onSwipNewsShow, newsFeedData, setNewsFeedData, Show, onSwipNewsClose} =
-    useNewsFeed();
+const NewsFeed = () => {
+  const {
+    handleSuccess,
+    newsFeedData,
+    Show,
+    handleSwipeSuccess,
+    handleReset,
+    currentIndex,
+  } = useNewsFeed();
+
   return (
-    <View style={styles.maincontainer}>
-      <CustomStatusbar  />
-      <Header lable ="News Feed" />
+    <SafeAreaView style={styles.container}>
       <View style={styles.container}>
-        <SwipButton
-          title=" >> Right Swipe to  >>"
-          onPressShow={onSwipNewsShow}
-          buttonTextStyle={styles.buttonTextStyle}
-        />
-        {Show && (
-          <FlatList
-            data={newsFeedData}
-            style={styles.flatList}
-            keyExtractor={(item, index) => {
-              return `${index}`;
-            }}
-            renderItem={({item, index}) => (
-              <NewsCard item={item} index={index} />
-            )}
-            showsVerticalScrollIndicator={false}
-          />
+        {Show == false ? (
+          <View style={styles.titleMainView}>
+            <Text style={styles.titleText}>New Feed App</Text>
+            <SwipButtonCustom
+              handleSuccess={handleSuccess}
+              handleReset={() => {}}
+            />
+          </View>
+        ) : (
+          <>
+            <View>
+              <TouchableOpacity style={styles.cardView}>
+                <Image
+                  source={{uri: newsFeedData[currentIndex]?.urlToImage}}
+                  style={styles.urlToImage}
+                />
+                <View style={styles.textView}>
+                  <Text style={styles.title}>
+                    Title : {newsFeedData[currentIndex]?.title}
+                  </Text>
+                  <Text style={styles.description}>
+                    Description: {newsFeedData[currentIndex]?.description}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+            <View style={styles.swipView}>
+              <SwipButtonCustom
+                handleSuccess={handleSwipeSuccess}
+                handleReset={handleReset}
+              />
+            </View>
+          </>
         )}
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
